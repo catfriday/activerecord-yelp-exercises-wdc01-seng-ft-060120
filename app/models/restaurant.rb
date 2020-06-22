@@ -44,4 +44,12 @@ class Restaurant < ActiveRecord::Base
         binding.pry
         Restaurant.all.select {|restaurant| restaurant.get_tag_names.include?("Vegitarian")}
     end
+
+    def self.name_like(name)
+        Restaurant.all.select { |restaurant| restaurant.name.downcase.include?(name.downcase)}
+    end
+
+    def self.name_not_like(name)
+        Restaurant.all.select { |restaurant| !restaurant.name.downcase.include?(name.downcase)}
+    end
 end
